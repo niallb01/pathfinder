@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../app.css";
+// import "../app.css";
 import { affirmations } from "../components/Affirmations";
 
 type Task = {

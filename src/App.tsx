@@ -1,9 +1,11 @@
-import "./app.css";
+import "./App.css";
 import HomePage from "./routes/HomePage";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <>
+      <Navbar />
       <HomePage />
     </>
   );
