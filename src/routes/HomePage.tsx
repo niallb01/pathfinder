@@ -33,10 +33,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="app">
-      <header>
-        <h1>PathFinder</h1>
-      </header>
-
       <section className="affirmation-section">
         <h2>Daily Affirmation</h2>
         <p className="affirmation">{currentAffirmation}</p>

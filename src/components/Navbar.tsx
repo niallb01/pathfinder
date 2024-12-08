@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-// import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu state
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false); // Resources dropdown state
   const resourcesRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   const toggleResources = () => {
@@ -37,8 +36,8 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 text-white relative">
       <div className="container mx-auto flex items-center justify-between p-4">
-        {/* Logo */}
         <Link to="/" className="hover:underline">
+          <img src="/logo.png" alt="PathFinder Logo" className="h-10 w-10" />
           <div className="text-2xl font-bold">PathFinder</div>
         </Link>
 
@@ -60,20 +59,26 @@ const Navbar = () => {
               <span>Resources</span>
             </button>
             {isResourcesOpen && (
-              <div className="absolute bg-white text-black mt-2 py-2 shadow-lg rounded">
+              <div className="absolute left-0 bg-white text-black mt-2 py-2 shadow-lg rounded z-10">
                 <Link
                   to="/tutorials"
                   className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={() => setIsResourcesOpen(false)}
                 >
                   Tutorials
                 </Link>
                 <Link
                   to="/articles"
                   className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={() => setIsResourcesOpen(false)}
                 >
                   Articles
                 </Link>
-                <Link to="/tools" className="block px-4 py-2 hover:bg-gray-100">
+                <Link
+                  to="/tools"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={() => setIsResourcesOpen(false)}
+                >
                   Tools
                 </Link>
               </div>
@@ -122,15 +127,93 @@ const Navbar = () => {
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-blue-500 z-10">
           <div className="space-y-2 p-4">
-            <a href="#home" className="block hover:underline">
+            <Link
+              to="/"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
               Home
-            </a>
-            <a href="#features" className="block hover:underline">
-              Features
-            </a>
-            <a href="#contact" className="block hover:underline">
+            </Link>
+            <Link
+              to="/free-courses"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
+              Free Courses
+            </Link>
+
+            {/* Resources Dropdown in Mobile */}
+            <div ref={resourcesRef} className="relative">
+              <button
+                onClick={toggleResources}
+                className="w-full text-left hover:underline focus:outline-none"
+              >
+                Resources
+              </button>
+              {isResourcesOpen && (
+                <div className="absolute left-0 bg-white text-black mt-2 py-2 shadow-lg rounded z-10">
+                  <Link
+                    to="/tutorials"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                    onClick={() => {
+                      setIsResourcesOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Tutorials
+                  </Link>
+                  <Link
+                    to="/articles"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                    onClick={() => {
+                      setIsResourcesOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Articles
+                  </Link>
+                  <Link
+                    to="/tools"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                    onClick={() => {
+                      setIsResourcesOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Tools
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link
+              to="/ai-tools"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
+              AI Tools
+            </Link>
+            <Link
+              to="/task-manager"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
+              Task Manager
+            </Link>
+            <Link
+              to="/self-care"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
+              Self Care
+            </Link>
+            <Link
+              to="/contact"
+              className="block hover:underline"
+              onClick={() => setIsOpen(false)}
+            >
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       )}
