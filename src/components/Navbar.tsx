@@ -1,13 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+// import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const resourcesRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const toggleResources = () => {
+    setIsResourcesOpen((prev) => !prev);
+  };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        resourcesRef.current &&
+        !resourcesRef.current.contains(event.target as Node)
+      ) {
+        setIsResourcesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-blue-500 text-white relative">
@@ -16,19 +41,45 @@ const Navbar = () => {
         <Link to="/" className="hover:underline">
           <div className="text-2xl font-bold">PathFinder</div>
         </Link>
-        {/* <div className="text-2xl font-bold">PathFinder</div> */}
 
         {/* Links for larger screens */}
         <div className="hidden md:flex space-x-4">
-          {/* <Link to="/" className="hover:underline">
+          <Link to="/" className="hover:underline">
             Home
-          </Link> */}
+          </Link>
           <Link to="/free-courses" className="hover:underline">
             Free Courses
           </Link>
-          <Link to="/resources" className="hover:underline">
-            Resources
-          </Link>
+
+          {/* Resources Dropdown */}
+          <div ref={resourcesRef} className="relative">
+            <button
+              onClick={toggleResources}
+              className="hover:underline focus:outline-none flex items-center space-x-1"
+            >
+              <span>Resources</span>
+            </button>
+            {isResourcesOpen && (
+              <div className="absolute bg-white text-black mt-2 py-2 shadow-lg rounded">
+                <Link
+                  to="/tutorials"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Tutorials
+                </Link>
+                <Link
+                  to="/articles"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Articles
+                </Link>
+                <Link to="/tools" className="block px-4 py-2 hover:bg-gray-100">
+                  Tools
+                </Link>
+              </div>
+            )}
+          </div>
+
           <Link to="/ai-tools" className="hover:underline">
             AI Tools
           </Link>
