@@ -1,5 +1,9 @@
 const FreeCourses = () => {
-  return <></>;
+  return (
+    <>
+      <h1>free course</h1>
+    </>
+  );
 };
 
 export default FreeCourses;

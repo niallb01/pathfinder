@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 const Navbar = () => {
@@ -12,31 +13,34 @@ const Navbar = () => {
     <nav className="bg-blue-500 text-white relative">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <div className="text-2xl font-bold">PathFinder</div>
+        <Link to="/" className="hover:underline">
+          <div className="text-2xl font-bold">PathFinder</div>
+        </Link>
+        {/* <div className="text-2xl font-bold">PathFinder</div> */}
 
         {/* Links for larger screens */}
         <div className="hidden md:flex space-x-4">
-          <a href="#home" className="hover:underline">
+          {/* <Link to="/" className="hover:underline">
             Home
-          </a>
-          <a href="#features" className="hover:underline">
+          </Link> */}
+          <Link to="/free-courses" className="hover:underline">
             Free Courses
-          </a>
-          <a href="#features" className="hover:underline">
+          </Link>
+          <Link to="/resources" className="hover:underline">
             Resources
-          </a>
-          <a href="#contact" className="hover:underline">
+          </Link>
+          <Link to="/ai-tools" className="hover:underline">
             AI Tools
-          </a>
-          <a href="#contact" className="hover:underline">
+          </Link>
+          <Link to="/task-manager" className="hover:underline">
             Task Manager
-          </a>
-          <a href="#contact" className="hover:underline">
+          </Link>
+          <Link to="/self-care" className="hover:underline">
             Self Care
-          </a>
-          <a href="#contact" className="hover:underline">
+          </Link>
+          <Link to="/contact" className="hover:underline">
             Contact
-          </a>
+          </Link>
         </div>
 
         {/* Burger Menu Button */}
