@@ -20,7 +20,19 @@ const Navbar = () => {
             Home
           </a>
           <a href="#features" className="hover:underline">
-            Features
+            Free Courses
+          </a>
+          <a href="#features" className="hover:underline">
+            Resources
+          </a>
+          <a href="#contact" className="hover:underline">
+            AI Tools
+          </a>
+          <a href="#contact" className="hover:underline">
+            Task Manager
+          </a>
+          <a href="#contact" className="hover:underline">
+            Self Care
           </a>
           <a href="#contact" className="hover:underline">
             Contact
