@@ -35,10 +35,11 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-500 text-white relative">
+      {/* <img src="/logo.png" alt="PathFinder Logo" className="h-15 w-20" /> */}
+
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link to="/" className="hover:underline">
-          <img src="/logo.png" alt="PathFinder Logo" className="h-10 w-10" />
-          <div className="text-2xl font-bold">PathFinder</div>
+          <div className="text-2xl font-bold">CareerLift</div>
         </Link>
 
         {/* Links for larger screens */}
@@ -46,9 +47,9 @@ const Navbar = () => {
           <Link to="/" className="hover:underline">
             Home
           </Link>
-          <Link to="/free-courses" className="hover:underline">
+          {/* <Link to="/free-courses" className="hover:underline">
             Free Courses
-          </Link>
+          </Link> */}
 
           {/* Resources Dropdown */}
           <div ref={resourcesRef} className="relative">
@@ -93,9 +94,6 @@ const Navbar = () => {
           </Link>
           <Link to="/self-care" className="hover:underline">
             Self Care
-          </Link>
-          <Link to="/contact" className="hover:underline">
-            Contact
           </Link>
         </div>
 
@@ -206,13 +204,6 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               Self Care
-            </Link>
-            <Link
-              to="/contact"
-              className="block hover:underline"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
             </Link>
           </div>
         </div>
